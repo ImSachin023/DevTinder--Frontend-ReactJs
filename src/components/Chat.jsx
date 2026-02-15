@@ -16,7 +16,7 @@ const Chat = () => {
     const chat = await axios.get(BASE_URL + "/chat/" + targetUserId, {
       withCredentials: true,
     });
-    console.log(chat.data.messages);
+    console.log(targetUserId);
 
     const chatMessages = chat?.data?.messages.map((message) => {
       const { senderId, text } = message;
@@ -44,7 +44,6 @@ const Chat = () => {
     });
 
     socket.on("messageReceived", ({ firstName, lastName, text }) => {
-      console.log(firstName + " : " + text);
       setMessages((messages) => [...messages, { firstName, lastName, text }]);
     });
 

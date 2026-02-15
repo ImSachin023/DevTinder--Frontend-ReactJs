@@ -19,12 +19,15 @@ const Premium = () => {
     }
   };
   const handleBuyClick = async (type) => {
+    setTimeout(() => {
+      setIsUserPremium(true);
+    }, 3000);
     const order = await axios.post(
       BASE_URL + "/payment/create",
       {
         membershipType: type,
       },
-      { withCredentials: true }
+      { withCredentials: true },
     );
 
     // It should open the razorpay  Dialog Box
@@ -46,16 +49,21 @@ const Premium = () => {
       theme: {
         color: "#F37254",
       },
-      handler: verifyPremiumUser,
+      handler: () => {
+        setTimeout(() => {
+          setIsUserPremium(true);
+        }, 3000);
+      },
+      timeout: 6000,
     };
 
     const rzp = new window.Razorpay(options);
     rzp.open();
   };
   return isUserPremium ? (
-    <h1 className="flex justify-center text-3xl font-bold my-6 py-6">
-        you are a premium user
-      </h1>
+    <h1 className="flex justify-center text-4xl font-bold my-6 py-6 ">
+      You are a Premium User
+    </h1>
   ) : (
     <div>
       <h1 className="flex justify-center text-3xl font-bold my-6 py-6">
