@@ -138,5 +138,4 @@ The app will be running at `http://localhost:5173`.
 ---
 
 ## 📄 License
-
 This project is open source — feel free to explore, fork, and learn from it.
